@@ -7,7 +7,6 @@ type PatientListProps = {
   patients: PatientType[]
   onEdit?: (id: string) => void
   onDelete?: (id: string) => void
-  patientToEdit?: PatientType
 }
 
 export const PatientList = ({
