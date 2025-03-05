@@ -1,13 +1,21 @@
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { usePatientStore } from '@/stores'
-import { PatientType } from '../lib/schema'
+import { PatientFormData, patientSchema, PatientType } from '../lib/schema'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import toast, { toastConfig } from 'react-simple-toasts'
+import 'react-simple-toasts/dist/style.css'
+import 'react-simple-toasts/dist/theme/moonlight.css'
+
+toastConfig({ theme: 'moonlight' })
 
 export function usePatientForm () {
   const { addPatient, editPatient } = usePatientStore()
 
-  const form = useForm<PatientType>({
+  const form = useForm<PatientFormData>({
+    resolver: zodResolver(patientSchema),
+    mode: 'onTouched',
     defaultValues: {
-      id: '',
       patient: '',
       owner: '',
       email: '',
@@ -16,14 +24,18 @@ export function usePatientForm () {
     }
   })
 
-  const onSubmit = (data: PatientType) => {
+  const onSubmit: SubmitHandler<PatientFormData> = (data: PatientFormData) => {
     addPatient(data)
+    toast('Paciente agregado! ✅')
     form.reset()
+    usePatientStore.getState().clearEdit()
   }
 
-  const onEdit = (data: PatientType) => {
+  const onEdit: SubmitHandler<PatientType> = (data: PatientType) => {
     editPatient(data)
+    toast('Paciente editado! ✅')
     form.reset()
+    usePatientStore.getState().clearEdit()
   }
 
   return { form, onSubmit, onEdit }

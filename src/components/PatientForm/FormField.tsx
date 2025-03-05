@@ -4,12 +4,12 @@ import { Textarea } from '@/components/ui/textarea'
 import { capitalize } from '@/lib/utils'
 import { Calendar } from 'lucide-react'
 import { UseFormReturn } from 'react-hook-form'
-import { PatientType } from '../../lib/schema'
+import { PatientFormData } from '../../lib/schema'
 
 interface FormFieldProps {
   label: string
-  name: keyof PatientType
-  form: UseFormReturn<PatientType>
+  name: keyof PatientFormData
+  form: UseFormReturn<PatientFormData>
   type?: 'text' | 'email' | 'date' | 'textarea'
   placeholder: string
 }

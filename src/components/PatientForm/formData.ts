@@ -1,4 +1,4 @@
-import { PatientFormData } from '@/lib/schema'
+import { PatientFormData } from '../../lib/schema'
 
 type FormFieldSchema = {
   id: string

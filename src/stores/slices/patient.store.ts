@@ -8,7 +8,8 @@ export const PatientStore = create<PatientStoreType>()(
     persist(
       set => ({
         patients: [],
-        editID: '',
+        patientToEdit: null,
+        editID: null,
         addPatient: patient => {
           const newPatient = { ...patient, id: uuidv4() }
 
@@ -33,7 +34,8 @@ export const PatientStore = create<PatientStoreType>()(
         },
         setEditID: id => {
           set({ editID: id })
-        }
+        },
+        clearEdit: () => set({ patientToEdit: null, editID: null })
       }),
       {
         name: 'patients-store',

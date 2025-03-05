@@ -9,6 +9,7 @@ export const usePatientStore = () => {
   const setEditPatient = PatientStore(state => state.setEditID)
   const editPatient = PatientStore(state => state.editPatient)
   const editID = PatientStore(state => state.editID)
+  const clearEdit = PatientStore(state => state.clearEdit)
 
   const [patientToEdit, setPatientToEdit] = useState<PatientType | never[]>([])
 
@@ -32,6 +33,7 @@ export const usePatientStore = () => {
     setEditPatient,
     patientToEdit,
     editPatient,
-    editID
+    editID,
+    clearEdit
   }
 }

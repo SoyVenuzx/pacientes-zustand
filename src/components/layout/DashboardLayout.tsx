@@ -11,8 +11,19 @@ export const DashboardLayout = () => {
   const { form, onSubmit, onEdit } = usePatientForm()
 
   useEffect(() => {
-    if (!editID) form.reset()
-    form.reset(patientToEdit as PatientType)
+    if (editID && patientToEdit) {
+      form.reset(patientToEdit as PatientType) // Cargar datos para edición
+    } else {
+      form.reset({
+        // Resetear a valores iniciales
+        patient: '',
+        owner: '',
+        email: '',
+        date: '',
+        symptoms: ''
+      })
+      // store.getState().clearEdit()
+    }
   }, [patientToEdit, editID])
 
   return (
