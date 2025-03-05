@@ -43,7 +43,7 @@ export const PatientList = ({
                     variant='ghost'
                     size='icon'
                     className='w-8 h-8 text-zinc-500 hover:text-zinc-900'
-                    onClick={() => onEdit?.(patient.id)}
+                    onClick={() => onEdit?.(patient.id ?? '')}
                   >
                     <Pencil className='w-4 h-4' />
                     <span className='sr-only'>Editar paciente</span>
@@ -52,7 +52,7 @@ export const PatientList = ({
                     variant='ghost'
                     size='icon'
                     className='w-8 h-8 text-zinc-500 hover:text-red-600'
-                    onClick={() => onDelete?.(patient.id)}
+                    onClick={() => onDelete?.(patient.id ?? '')}
                   >
                     <Trash2 className='w-4 h-4' />
                     <span className='sr-only'>Eliminar paciente</span>
